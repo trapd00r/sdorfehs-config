@@ -21,10 +21,16 @@ use Data::Dumper;
 np();
 
 sub np {
-  my $data = beet_info("$ENV{XDG_MUSIC_DIR}/" . $mpd->current->file);
+  use Encode;
+  my $data = beet_info("$ENV{XDG_MUSIC_DIR}" . $mpd->current->file);
+
+# fulhack
+  for my $k(keys(%{$data})) {
+    $data->{$k} = decode_utf8($data->{$k});
+  }
 #  print Dumper $data;
 
-  $data->{bitrate} = $data->{bitrate}
+  $data->{bitrate} = exists($data->{bitrate})
     ? sprintf "%d", $data->{bitrate} / 1000
     : 0;
 
@@ -42,7 +48,20 @@ sub np {
   else {
     $data->{label} = '';
   }
-  $data->{format} = lc($data->{format})  unless not defined $data->{format};
+  if(exists($data->{format})) {
+    $data->{format} = lc($data->{format});
+  }
+  else {
+    $data->{format} = 'weird';
+  }
+
+  if(exists($data->{genre})) {
+    $data->{genre} = lc($data->{genre});
+  }
+  else {
+    $data->{genre} = 'undef';
+  }
+
 
   my $goto_album_dir  = sprintf "^ca(1, %s)", 'mpd-goto-album-dir';
   my $goto_artist_dir = sprintf "^ca(1, %s)", 'mpd-goto-artist-dir';
@@ -59,6 +78,8 @@ sub np {
     nc($data->{bitrate}),
     $data->{format},
 }
+
+
 
 sub white {
   return fgd('#fff', shift);
