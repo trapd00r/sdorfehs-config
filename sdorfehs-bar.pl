@@ -20,6 +20,13 @@ use Data::Dumper;
 
 np();
 
+sub date {
+  use Date::Language;
+  my $lang = Date::Language->new('English');
+  return $lang->time2str("%a %Y%m%d %H:%M", time);
+
+}
+
 sub np {
   use Encode;
   my $data = beet_info("$ENV{XDG_MUSIC_DIR}" . $mpd->current->file);
@@ -62,10 +69,18 @@ sub np {
     $data->{genre} = 'undef';
   }
 
+  if($data->{myartist}) {
+    $data->{artist} = $data->{artist} . ' (' . fgd('#ffff00', $data->{myartist}) . ')';
+  }
+
+  my $bar = fgd('#484848', '│');
+  my $time = date();
+
 
   my $goto_album_dir  = sprintf "^ca(1, %s)", 'mpd-goto-album-dir';
   my $goto_artist_dir = sprintf "^ca(1, %s)", 'mpd-goto-artist-dir';
-  printf "%s the %s song '%s' by $goto_artist_dir%s^ca() on $goto_album_dir%s^ca() released %s on %s. It's track %s/%s and the bitrate is %s kbps (%s).\n",
+#  printf "%s the %s song '%s' by $goto_artist_dir%s^ca() on $goto_album_dir%s^ca() released %s on %s. It's track %s/%s and the bitrate is %s kbps (%s).\n",
+  printf "%s the %s song '%s' by $goto_artist_dir%s^ca() on $goto_album_dir%s^ca() released %s on %s $bar %s\n",
     fgd('#ef0e99', bold('▶')),
     white(bold(lc($data->{genre}))),
     bold(fgd('#afaf00', $data->{title})),
@@ -73,10 +88,7 @@ sub np {
     bold(fgd('#87af5f', $data->{album})),
     bold(nc($data->{original_date})),
     bold($data->{label}),
-    nc(defined $data->{track} ? $data->{track} : 0),
-    nc(defined $data->{tracktotal} ? $data->{tracktotal} : 0),
-    nc($data->{bitrate}),
-    $data->{format},
+    bold(fgd('#ff005f', $time)),
 }
 
 
