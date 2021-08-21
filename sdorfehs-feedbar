@@ -3,5 +3,5 @@
 
 while true; do
   perl ./sdorfehs-bar.pl > $XDG_CONFIG_HOME/sdorfehs/bar
-  sleep 5
+  sleep 2
 done
