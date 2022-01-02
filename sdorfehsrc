@@ -21,7 +21,8 @@ bind C-s split
 bind S hsplit
 bind C-S hsplit
 
-bind c exec urxvt -name sid -fg white -bg black
+# try skipbuiltinglyphs for a while
+bind c exec urxvt -name sid -fg white -bg black -sbg
 bind C exec xterm
 
 unbind n
@@ -71,10 +72,6 @@ definekey root 9 exec sdorfehs -c "vselect 0" -c "fselect 2" -c "select 9"
 # i like tab just going between the same two windows
 bind Tab focuslast
 bind grave focus
-
-# act normal but prevent firefox raising itself when links are opened from
-# other apps
-#set rudeness 12
 
 # let popups stay centered
 unmanage xmessage
