@@ -26,8 +26,8 @@ bind c exec urxvt -name sid -fg white -bg black -sbg
 bind C exec xterm
 
 unbind n
-bind n exec sdorfehs -c "echo `mpc prev | head -1`"
-bind p exec sdorfehs -c "echo `mpc next | head -1`"
+bind n exec mpc prev
+bind p exec mpc next
 bind o exec mpc toggle
 
 # lock the screen
