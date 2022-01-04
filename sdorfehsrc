@@ -1,7 +1,9 @@
 # vim:ft=ratpoison:
 escape C-f
 
-set barpadding 10 5
+# https://www.japh.se/2021/03/21/ratpoison-urxvt-and-borders.html
+set barpadding 2 0
+set padding 1 1 1 1
 set barsticky 1
 set gap 1
 set ignoreresizehints 1
