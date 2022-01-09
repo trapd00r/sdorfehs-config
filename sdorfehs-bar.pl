@@ -23,7 +23,8 @@ np();
 sub date {
   use Date::Language;
   my $lang = Date::Language->new('English');
-  return $lang->time2str("%a %Y%m%d %H:%M", time);
+  return $lang->time2str("%H:%M", time);
+#  return $lang->time2str("%a %Y%m%d %H:%M", time);
 
 }
 
