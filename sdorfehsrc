@@ -49,6 +49,7 @@ bind x   exec xterm
 
 unbind k
 unbind n
+bind a exec sdorfehs -c "echo `date`"
 bind n exec mpc prev
 bind p exec mpc next
 bind o exec mpc toggle
