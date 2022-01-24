@@ -35,7 +35,7 @@ set vscreens          10
 set warp              0
 set winfmt            %n%s%t
 set wingravity        nw
-set winliststyle      row
+set winliststyle      column
 set winname           title
 
 bind s   split
