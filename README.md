@@ -19,6 +19,9 @@ playing data. A terminal is spawned where the shell CWD is set to the path of th
 - **mpd-goto-artist-dir**
 This script is executed when clicking the artist name on the sdorfehs now
 playing data. A terminal is spawned where the shell CWD is set to the path of the artist.
+- **mpd-copy-path-to-clipboard**
+This script is executed when clicking the song title on the sdorfehs now playing data.
+The full path of the song is placed in the PRIMARY clipboard.
 
 Requirements
 ------------

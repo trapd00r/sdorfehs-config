@@ -24,17 +24,25 @@ sub date {
   use Date::Language;
   my $lang = Date::Language->new('English');
   return $lang->time2str("%H:%M", time);
-#  return $lang->time2str("%a %Y%m%d %H:%M", time);
-
+#  return $lang->time2str("%a %d/%m %H:%M", time);
 }
 
 sub np {
+#  STATE_CHECK:
+#  # avoid performing beet info query if mpd is paused
+#  if($mpd->status->state ne 'play') {
+#    warn 'mpd not playing, waiting 10s';
+#    sleep 10;
+#    goto STATE_CHECK;
+#  }
+#  warn 'mpd playing, proceeding';
+
   use Encode;
   my $data = beet_info("$ENV{XDG_MUSIC_DIR}" . $mpd->current->file);
 
 # fulhack
   for my $k(keys(%{$data})) {
-    $data->{$k} = decode_utf8($data->{$k});
+#    $data->{$k} = decode_utf8($data->{$k});
   }
 #  print Dumper $data;
 
@@ -77,18 +85,22 @@ sub np {
   my $bar = fgd('#484848', '│');
   my $time = date();
 
+#  warn Dumper $data;
 
-  my $goto_album_dir  = sprintf "^ca(1, %s)", 'mpd-goto-album-dir';
-  my $goto_artist_dir = sprintf "^ca(1, %s)", 'mpd-goto-artist-dir';
+# execute fun stuff on click
+  my $goto_album_dir         = sprintf "^ca(1, %s)", 'mpd-goto-album-dir';
+  my $goto_artist_dir        = sprintf "^ca(1, %s)", 'mpd-goto-artist-dir';
+  my $copy_path_to_clipboard = sprintf "^ca(1, %s)", 'mpd-copy-path-to-clipboard';
+
 #  printf "%s the %s song '%s' by $goto_artist_dir%s^ca() on $goto_album_dir%s^ca() released %s on %s. It's track %s/%s and the bitrate is %s kbps (%s).\n",
-  printf "%s the %s song '%s' by $goto_artist_dir%s^ca() on $goto_album_dir%s^ca() released %s on %s $bar %s\n",
+  printf "%s the %s song $copy_path_to_clipboard'%s'^ca() by $goto_artist_dir%s^ca() on $goto_album_dir%s^ca() released %s on %s $bar %s\n",
     fgd('#ef0e99', bold('▶')),
     white(bold(lc($data->{genre}))),
     bold(fgd('#afaf00', $data->{title})),
     bold(fgd('#afd700', $data->{artist})),
-    bold(fgd('#87af5f', $data->{album})),
-    bold(nc($data->{original_date})),
-    bold($data->{label}),
+    bold(fgd('#87af5f', $data->{album} ? $data->{album} : 'Other')),
+    bold(nc($data->{original_date} ? $data->{original_date} : $data->{year})),
+    bold($data->{label} ? $data->{label} : 'Other'),
     bold(fgd('#ff005f', $time)),
 }
 
