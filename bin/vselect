@@ -1,0 +1,5 @@
+#!/bin/sh
+# abstract: vselect by name or number
+VSCREEN="$@"
+VSCREEN=$(echo $VSCREEN|perl -pe 's/^\d+[-+*]//')
+sdorfehs -c "vselect $VSCREEN"

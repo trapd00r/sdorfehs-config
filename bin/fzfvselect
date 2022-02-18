@@ -1,0 +1,3 @@
+#!/bin/sh
+# abstract: fzfvselect
+vselect $(sdorfehs -c 'vscreens'|fzfmenu)

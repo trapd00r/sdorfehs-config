@@ -94,8 +94,19 @@ bind Escape exec clipboard-to-primary
 bind Tab exec sdorfehs -c "set barbordercolor black" -c "set bgcolor #d3ceb9" -c "set barborder 6" -c "set barpadding 24 14" -c "set border 6" -c "set fgcolor #444444" -c "set padding 40 40 40 40" -c "set onlyborder 1"
 bind ISO_Left_Tab restart
 
+# select vscreens with fzf
+unbind v
+bind v fzfvselect
+
+vselect 8
+vrename music
 vselect 9
 vrename teams
+vselect 1 
+vrename DB
+vselect 2
+vrename FTP
 vselect 0
+
 
 hsplit
