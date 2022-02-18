@@ -96,8 +96,11 @@ bind ISO_Left_Tab restart
 
 # select vscreens with fzf
 unbind v
-bind v fzfvselect
-bind W fzfselect
+bind v exec fzfvselect
+
+# select windows with fzf
+unbind w
+bind w exec fzfselect
 
 vselect 8
 vrename music
@@ -108,6 +111,5 @@ vrename DB
 vselect 2
 vrename FTP
 vselect 0
-
 
 hsplit
