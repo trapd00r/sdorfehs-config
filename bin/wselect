@@ -1,0 +1,5 @@
+#!/bin/sh
+# abstract: select by name or number
+WINDOW="$@"
+WINDOW=$(echo $WINDOW|perl -pe 's/^\d+[-+*]//')
+sdorfehs -c "select $WINDOW"

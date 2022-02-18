@@ -97,6 +97,7 @@ bind ISO_Left_Tab restart
 # select vscreens with fzf
 unbind v
 bind v fzfvselect
+bind W fzfselect
 
 vselect 8
 vrename music
