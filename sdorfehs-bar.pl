@@ -111,6 +111,8 @@ sub white {
 }
 
 sub bold {
+# font issues after upgrade...
+  return $_[0];
   return "^fn('Anonymous Pro:style=Bold:pixelsize=10:antialias=1:hinting=1:hintstyle=3')" . $_[0] . '^fn()';
 }
 
