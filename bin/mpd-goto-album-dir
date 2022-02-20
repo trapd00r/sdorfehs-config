@@ -13,8 +13,9 @@ my $mpd = Audio::MPD->new;
 my $path = "$ENV{XDG_MUSIC_DIR}/" . $mpd->current->file;
 
 my ($album_path) = $path =~ m{^(.+)/.+[.].+$};
+$album_path = quotemeta($album_path);
 
 run(
-  command => "urxvt -name sid -chdir '$album_path'",
+  command => "urxvt -name sid -chdir $album_path",
   verbose => 0,
 );
