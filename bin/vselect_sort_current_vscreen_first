@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+# abstract: indicate which vscreen is the current in fzf before switching
+use strict;
+use IPC::Cmd qw(run);
+
+my $buffer;
+
+scalar run(
+  command => "sdorfehs -c vscreens",
+  verbose => 0,
+  buffer  => \$buffer,
+  timeout => 0,
+);
+
+my @vscreens = split(/\n/, $buffer);
+
+
+my @sorted = sort { $a =~ m/^\d+[*]/ ? -1 : 1 } @vscreens;
+
+print "$_\n" for @sorted;

@@ -42,7 +42,7 @@ bind s   split
 bind C-s split
 bind S   hsplit
 bind C-S hsplit
-#bind c   exec urxvt -name sid -fg white -bg black -sbg
+
 bind C   exec urxvt -fg white -bg black -sbg +sb
 bind c   exec urxvt -fg white -bg '#121212' -sbg +sb
 bind x   exec xterm
@@ -57,21 +57,21 @@ bind o exec mpc toggle
 
 # swap workspaces, but define it in top
 # "win-n"
-definekey top s-1 vselect 0
-definekey top s-2 vselect 1
-definekey top s-3 vselect 2
-definekey top s-4 vselect 3
-definekey top s-5 vselect 4
-definekey top s-6 vselect 5
-definekey top s-7 vselect 6
-definekey top s-8 vselect 7
-definekey top s-9 vselect 8
-definekey top s-0 vselect 9
+definekey top s-1 vselect 1
+definekey top s-2 vselect 2
+definekey top s-3 vselect 3
+definekey top s-4 vselect 4
+definekey top s-5 vselect 5
+definekey top s-6 vselect 6
+definekey top s-7 vselect 7
+definekey top s-8 vselect 8
+definekey top s-9 vselect 9
+definekey top s-0 vselect 0
 
 
 definekey top s-Return exec mpd-show-coverart
 definekey top C-Return exec urxvt -fg white -bg black -sbg +sb -e $HOME/dev/utils/mpdfzf -p
-#definekey top C-Return exec xdotool click 1
+definekey top M-Return smove
 
 #< binds: window management
 bind H prevscreen
@@ -97,19 +97,21 @@ bind ISO_Left_Tab restart
 # select vscreens with fzf
 unbind v
 bind v exec fzfvselect
+bind V vscreens
 
 # select windows with fzf
 unbind w
 bind w exec fzfselect
 
-vselect 8
-vrename music
-vselect 9
-vrename teams
-vselect 1 
-vrename DB
 vselect 2
+vrename DB
+vselect 3
 vrename FTP
+vselect 9
+vrename music
 vselect 0
+vrename teams
 
+vselect 1
+vrename code
 hsplit
