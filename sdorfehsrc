@@ -107,6 +107,10 @@ vselect 2
 vrename DB
 vselect 3
 vrename FTP
+vselect 4
+vrename slask
+vselect 5
+vrename irc
 vselect 9
 vrename music
 vselect 0
