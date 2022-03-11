@@ -36,17 +36,17 @@ sub np {
   $pipe->autoflush(1);
   select $pipe;
 
-  my $time = date();
   my $bar = fgd('#484848', '│');
 
   while(1) {
     PLAY_CHECK:
     if($mpd->status->state ne 'play') {
-#      printf "mpd paused %s %s\n", $bar, bold(fgd('#ff005f', $time));
+      printf "mpd paused %s %s\n", $bar, bold(fgd('#ff005f', date()));
 
       sleep 5;
       goto PLAY_CHECK;
     }
+    my $time = date();
 
     use Encode;
     my $data = beet_info("$ENV{XDG_MUSIC_DIR}" . $mpd->current->file);
@@ -107,7 +107,8 @@ sub np {
       bold(fgd('#87af5f', $data->{album} ? $data->{album} : 'Other')),
       bold(nc($data->{original_date} ? $data->{original_date} : $data->{year})),
       bold($data->{label} ? $data->{label} : 'Other'),
-      bold(fgd('#ff005f', $time)),
+      bold(fgd('#ff005f', $time));
+    sleep 4;
   }
 }
 
