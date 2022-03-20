@@ -108,7 +108,7 @@ sub np {
       bold(nc($data->{original_date} ? $data->{original_date} : $data->{year})),
       bold($data->{label} ? $data->{label} : 'Other'),
       bold(fgd('#ff005f', $time));
-    sleep 4;
+    sleep 15;
   }
 }
 
