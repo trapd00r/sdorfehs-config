@@ -54,6 +54,8 @@ bind n exec mpc prev
 bind p exec mpc next
 bind o exec mpc toggle
 
+# scratch buffer for temp things
+bind Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
 
 # swap workspaces, but define it in top
 # "win-n"
@@ -91,7 +93,7 @@ bind G vmove
 # dbeaver doesn't behave and ignores the primary buffer
 bind Escape exec clipboard-to-primary
 
-bind Tab exec sdorfehs -c "set barbordercolor black" -c "set bgcolor #d3ceb9" -c "set barborder 6" -c "set barpadding 24 14" -c "set border 6" -c "set fgcolor #444444" -c "set padding 40 40 40 40" -c "set onlyborder 1"
+# bind Tab exec sdorfehs -c "set barbordercolor black" -c "set bgcolor #d3ceb9" -c "set barborder 6" -c "set barpadding 24 14" -c "set border 6" -c "set fgcolor #444444" -c "set padding 40 40 40 40" -c "set onlyborder 1"
 bind ISO_Left_Tab restart
 
 # select vscreens with fzf
@@ -102,6 +104,9 @@ bind V vscreens
 # select windows with fzf
 unbind w
 bind w exec fzfselect
+
+# web development view, split firefox and a terminal
+bind W exec sdorfehs -c "hsplit" -c "resize 200 0"
 
 vselect 2
 vrename db
@@ -117,11 +122,18 @@ vselect 7
 vrename slask2
 vselect 8
 vrename mail
-vselect 9
-vrename mpd
+
 vselect 0
 vrename teams
 
+vselect 9
+vrename music
+
+exec pavucontrol
+hsplit
+focusright
+exec pulseeffects
+iprev
+
 vselect 1
 vrename code
-hsplit
