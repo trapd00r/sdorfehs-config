@@ -56,6 +56,7 @@ bind o exec mpc toggle
 
 # scratch buffer for temp things
 bind Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
+bind C-Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
 
 # swap workspaces, but define it in top
 # "win-n"
