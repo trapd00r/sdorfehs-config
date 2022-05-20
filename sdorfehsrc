@@ -88,6 +88,8 @@ bind j focusdown
 bind k focusup
 bind l focusright
 
+bind C-R exec reboot_butik
+
 bind C-K kill
 
 bind G vmove
