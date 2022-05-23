@@ -13,6 +13,7 @@ use Term::ExtendedColor::Dzen qw(fgd bgd);
 
 use Audio::MPD;
 use Time::Date;
+use IPC::Cmd qw(run);
 use Music::Beets::Info qw(beet_info);
 my $mpd = Audio::MPD->new;
 
@@ -29,6 +30,26 @@ sub date {
 #  return $lang->time2str("%H:%M", time);
   return $lang->time2str("%H:%M:%S", time);
 #  return $lang->time2str("%a %d/%m %H:%M", time);
+}
+
+
+sub fmt_vscreen_list {
+  my $buffer;
+
+  scalar run(
+    command => "sdorfehs -c vscreens",
+    verbose => 0,
+    buffer  => \$buffer,
+    timeout => 0,
+  );
+
+  my @vscreens = split(/\n/, $buffer);
+
+  my @sorted = sort { $a =~ m/^\d+[*]/ ? -1 : 1 } @vscreens;
+
+  my $vscreen_bar = ($sorted[0] =~ s/[+*-]/ /r);
+
+  return $vscreen_bar;
 }
 
 sub np {
@@ -99,7 +120,7 @@ sub np {
     my $copy_path_to_clipboard = sprintf "^ca(1, %s)", 'mpd-copy-path-to-clipboard';
 
 #    printf "%s the %s song '%s' by $goto_artist_dir%s^ca() on $goto_album_dir%s^ca() released %s on %s. It's track %s/%s and the bitrate is %s kbps (%s).\n",
-    printf "%s the %s song $copy_path_to_clipboard'%s'^ca() by $goto_artist_dir%s^ca() on $goto_album_dir%s^ca() released %s on %s $bar %s\n",
+    printf "%s the %s song $copy_path_to_clipboard'%s'^ca() by $goto_artist_dir%s^ca() on $goto_album_dir%s^ca() released %s on %s $bar %s %s\n",
       fgd('#ef0e99', bold('▶')),
       white(bold(lc($data->{genre}))),
       bold(fgd('#afaf00', $data->{title})),
@@ -107,7 +128,8 @@ sub np {
       bold(fgd('#87af5f', $data->{album} ? $data->{album} : 'Other')),
       bold(nc($data->{original_date} ? $data->{original_date} : $data->{year})),
       bold($data->{label} ? $data->{label} : 'Other'),
-      bold(fgd('#ff005f', $time));
+      bold(fgd('#ff005f', $time)),
+      bgd('#ff0000', fmt_vscreen_list());
     sleep 15;
   }
 }
