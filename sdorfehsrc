@@ -110,6 +110,9 @@ bind V vscreens
 unbind w
 bind w exec fzfselect
 
+# dmenu-like 'select and run', but using fzf (thank you for the inspiration wassberg)
+bind b exec st -e sh -c $(ls ~/dev/utils /usr/bin /bin |fzfmenu)
+
 # web development view, split firefox and a terminal
 bind W exec sdorfehs -c "hsplit" -c "resize 200 0"
 
