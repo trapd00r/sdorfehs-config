@@ -53,8 +53,13 @@ unbind w
 # applications
 #---------------------------------------------------------------------------
 bind a exec sdorfehs -c "echo `date`"
+
 bind C exec urxvt -fg white -bg '#1e1727' -sbg +sb
-bind c exec urxvt -fg white -bg black -sbg +sb
+#bind c exec urxvt -fg white -bg black -sbg +sb
+
+# weird bug in rxvt where the PS1 shows at the bottom
+bind c exec urxvt -e zsh -c 'clear;zsh'
+
 bind x exec xterm
 
 # scratch buffer for temp things
