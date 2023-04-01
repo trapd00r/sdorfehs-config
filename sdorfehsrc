@@ -1,8 +1,10 @@
 # vim:ft=ratpoison:
 escape C-f
 
+#---------------------------------------------------------------------------
+# main options
 # https://www.japh.se/2021/03/21/ratpoison-urxvt-and-borders.html
-
+#---------------------------------------------------------------------------
 set barbordercolor    #121212
 set barinpadding      1
 set barpadding        2 0
@@ -27,7 +29,7 @@ set padding           0 0 0 0
 #set padding           1 1 1 0
 set resizefmt         resize (%Wx%H)
 set resizeunit        5
-set rudeness          15
+#set rudeness          15
 set startupmessage    0
 set stickyfmt         %t
 set topkmap           top
@@ -39,28 +41,29 @@ set wingravity        nw
 set winliststyle      column
 set winname           title
 
-bind s   split
-bind C-s split
-bind S   hsplit
-bind C-S hsplit
-
-bind C   exec urxvt -fg white -bg '#1e1727' -sbg +sb
-bind c   exec urxvt -fg white -bg black -sbg +sb
-bind x   exec xterm
-
+#---------------------------------------------------------------------------
+# unbind useless or dangerous defaults
+#---------------------------------------------------------------------------
 unbind k
 unbind n
+unbind v
+unbind w
+
+#---------------------------------------------------------------------------
+# applications
+#---------------------------------------------------------------------------
 bind a exec sdorfehs -c "echo `date`"
-bind n exec mpc --host 192.168.1.12 prev
-bind p exec mpc --host 192.168.1.12 next && mpd-cp-coverart-to-tmp
-bind o exec mpc --host 192.168.1.12 toggle
+bind C exec urxvt -fg white -bg '#1e1727' -sbg +sb
+bind c exec urxvt -fg white -bg black -sbg +sb
+bind x exec xterm
 
 # scratch buffer for temp things
 bind Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
 bind C-Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
 
-# swap workspaces, but define it in top
-# "win-n"
+#---------------------------------------------------------------------------
+# workspaces/vscreens - win+n
+#---------------------------------------------------------------------------
 definekey top s-1 vselect 1
 definekey top s-2 vselect 2
 definekey top s-3 vselect 3
@@ -72,28 +75,54 @@ definekey top s-8 vselect 8
 definekey top s-9 vselect 9
 definekey top s-0 vselect 0
 
+#---------------------------------------------------------------------------
+# mpd haxx
+#---------------------------------------------------------------------------
+bind n exec mpc --host 192.168.1.12 prev
+bind p exec mpc --host 192.168.1.12 next && mpd-cp-coverart-to-tmp
+bind o exec mpc --host 192.168.1.12 toggle
 
+# show coverart of the currently playing song
+# (win+Return)
 definekey top s-Return exec mpd-show-coverart
-definekey top C-Return exec urxvt -fg white -bg black -sbg +sb -e $HOME/dev/utils/mpdfzf -p
-# move window to another monitor
-#definekey top M-Return smove
 
-#< binds: window management
-bind H prevscreen
-bind J exchangedown
-bind K exchangeup
-bind L nextscreen
+# open a new terminal in the currently playing artist directory
+# (alt+Return)
+definekey top M-Return exec mpd-goto-artist-dir
+
+# open a new terminal in the currently playing album directory
+# (alt+backspace)
+definekey top M-BackSpace exec mpd-goto-album-dir
+
+
+#---------------------------------------------------------------------------
+# window management
+#---------------------------------------------------------------------------
+
+bind s split
+bind S hsplit
 
 bind h focusleft
 bind j focusdown
 bind k focusup
 bind l focusright
 
-bind C-R exec reboot_butik
+bind H exec sdorfehs -c prevscreen; `echo left > ~/dev/sdorfehs-config/current_screen`
+bind J exchangedown
+bind K exchangeup
+bind L exec sdorfehs -c nextscreen; `echo right > ~/dev/sdorfehs-config/current_screen`
 
 bind C-K kill
 
+# move window to another named vscreen
 bind G vmove
+
+# move window to another monitor
+#definekey top M-Return smove
+
+# select vscreens and windows with fzf and st
+bind v exec fzfvselect
+bind w exec fzfselect
 
 # dbeaver doesn't behave and ignores the primary buffer
 bind Escape exec clipboard-to-primary
@@ -101,20 +130,15 @@ bind Escape exec clipboard-to-primary
 # bind Tab exec sdorfehs -c "set barbordercolor black" -c "set bgcolor #d3ceb9" -c "set barborder 6" -c "set barpadding 24 14" -c "set border 6" -c "set fgcolor #444444" -c "set padding 40 40 40 40" -c "set onlyborder 1"
 bind ISO_Left_Tab restart
 
-# select vscreens with fzf
-unbind v
-bind v exec fzfvselect
-bind V vscreens
-
-# select windows with fzf
-unbind w
-bind w exec fzfselect
-
 # dmenu-like 'select and run', but using fzf (thank you for the inspiration wassberg)
 bind b exec st -e sh -c $(ls ~/dev/utils /usr/bin /bin |fzfmenu)
 
 # web development view, split firefox and a terminal
 bind W exec sdorfehs -c "hsplit" -c "resize 200 0"
+
+#---------------------------------------------------------------------------
+# init and startup
+#---------------------------------------------------------------------------
 
 vselect 2
 vrename db
