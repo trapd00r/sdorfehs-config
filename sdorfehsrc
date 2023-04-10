@@ -112,10 +112,14 @@ bind j focusdown
 bind k focusup
 bind l focusright
 
-bind H exec sdorfehs -c prevscreen; `echo left > ~/dev/sdorfehs-config/current_screen`
-bind J exchangedown
-bind K exchangeup
-bind L exec sdorfehs -c nextscreen; `echo right > ~/dev/sdorfehs-config/current_screen`
+# left monitor
+bind H exec sselect_skip_top_monitor left
+# right monitor
+bind L exec sselect_skip_top_monitor right
+# middle monitor
+bind J sselect 1
+# top monitor
+bind K sselect 2
 
 bind C-K kill
 

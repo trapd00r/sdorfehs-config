@@ -1,0 +1,63 @@
+#!/usr/bin/perl
+# abstract: enable horizontal switching of monitors, but always skip the top monitor
+# since we use another keybinding to go vertically up and down
+
+# # left monitor
+# bind H exec sselect_skip_top_monitor left
+# # right monitor
+# bind L exec sselect_skip_top_monitor right
+
+use strict;
+use warnings;
+use feature 'say';
+use IPC::Cmd qw(run);
+
+# sdump
+# Output the list of all screens. The screens are separated by commas. Each screen
+# is shown as 6 values: its number, its x-coordinate, its y-
+# coordinate, its width, its height and if it is currently selected
+# (1=true, 0=false).
+
+## left
+# DP-0 0 0 1080 1080 1920 1,
+
+## middle
+# DP-2 1 1080 1080 1920 1080 0,
+
+## top
+# DP-5 2 1080 0 1920 1080 0,
+
+## right
+# HDMI-0 3 3000 1080 1080 1920 0
+
+my %monitor_physical_position = (
+  'DP-0'   => 'left',
+  'DP-2'   => 'middle',
+  'DP-5'   => 'top',
+  'HDMI-0' => 'right',
+);
+
+
+# left, right
+my $direction = shift;
+
+my @monitors = split(',', `sdorfehs -c sdump`);
+
+my ($current_monitor_number) = grep { /1$/ } @monitors;
+my($current_screen) = $current_monitor_number =~ /\S+\s+([0-3])/;
+
+
+# if $direction is left, change to the monitor to the left, skipping the top monitor
+# if $direction is right, change to the monitor to the right, skipping the top monitor
+
+my $new_screen = $direction eq 'left'
+  ? ($current_screen - 1 == 2 ? $current_screen - 2 : $current_screen -1)
+  : ($current_screen + 1 == 2 ? $current_screen + 2 : $current_screen +1);;
+
+
+scalar run(
+  command => "sdorfehs -c 'sselect $new_screen'",
+  verbose => 3,
+#  buffer  => \$buffer,
+  timeout => 0,
+);
