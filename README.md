@@ -26,6 +26,30 @@ The full path of the song is placed in the PRIMARY clipboard.
 - **fzfselect**, **fzfvselect**
 Interactive window and vscreen switcher using fzf.
 
+- **sselectt_skip_top_monitor**
+Physical monitor switching, skipping the upper monitor in a setup like this:
+
+```
+   [  ]
+[ ][  ][ ]
+```
+this allows for a sensible vim feel when switching monitors:
+
+```
+# left monitor
+bind H exec sselect_skip_top_monitor left
+
+# right monitor
+bind L exec sselect_skip_top_monitor right
+
+# middle monitor
+bind J sselect 1
+
+# top monitor
+bind K sselect 2
+```
+
+
 ![img](./assets/fzfselect.png)
 
 Requirements
