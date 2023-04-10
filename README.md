@@ -33,8 +33,8 @@ Interactive window and vscreen switcher using fzf.
 Physical monitor switching, skipping the upper monitor in a setup like this:
 
 ```
-   [  ]
-[ ][  ][ ]
+  [  ]
+[][  ][]
 ```
 this allows for a sensible vim feel when switching monitors:
 
