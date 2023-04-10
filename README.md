@@ -26,6 +26,9 @@ The full path of the song is placed in the PRIMARY clipboard.
 - **fzfselect**, **fzfvselect**
 Interactive window and vscreen switcher using fzf.
 
+
+![img](./assets/fzfselect.png)
+
 - **sselectt_skip_top_monitor**
 Physical monitor switching, skipping the upper monitor in a setup like this:
 
@@ -48,9 +51,6 @@ bind J sselect 1
 # top monitor
 bind K sselect 2
 ```
-
-
-![img](./assets/fzfselect.png)
 
 Requirements
 ------------
