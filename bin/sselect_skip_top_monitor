@@ -30,14 +30,6 @@ use IPC::Cmd qw(run);
 ## right
 # HDMI-0 3 3000 1080 1080 1920 0
 
-my %monitor_physical_position = (
-  'DP-0'   => 'left',
-  'DP-2'   => 'middle',
-  'DP-5'   => 'top',
-  'HDMI-0' => 'right',
-);
-
-
 # left, right
 my $direction = shift;
 
@@ -49,15 +41,16 @@ my($current_screen) = $current_monitor_number =~ /\S+\s+([0-3])/;
 
 # if $direction is left, change to the monitor to the left, skipping the top monitor
 # if $direction is right, change to the monitor to the right, skipping the top monitor
+# furthermore, allow going from leftmost monitor to the rightmost monitor and vice versa,
+# skipping the middle one
 
 my $new_screen = $direction eq 'left'
-  ? ($current_screen - 1 == 2 ? $current_screen - 2 : $current_screen -1)
-  : ($current_screen + 1 == 2 ? $current_screen + 2 : $current_screen +1);;
+  ? ($current_screen - 1 == 2 ? $current_screen - 2 : ($current_screen -1 < 0 ? 3 : $current_screen -1))
+  : ($current_screen + 1 == 2 ? $current_screen + 2 : ($current_screen +1 > 3 ? 0 : $current_screen +1));
 
 
 scalar run(
   command => "sdorfehs -c 'sselect $new_screen'",
-  verbose => 3,
-#  buffer  => \$buffer,
+  verbose => 0,
   timeout => 0,
 );
