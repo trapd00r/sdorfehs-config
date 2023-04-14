@@ -6,7 +6,7 @@ use warnings;
 
 use open qw(:std :utf8);
 use Audio::MPD;
-use IPC::Cmd qw(run);
+#use IPC::Cmd qw(run);
 
 my $mpd = Audio::MPD->new;
 
@@ -15,7 +15,9 @@ my $path = "$ENV{XDG_MUSIC_DIR}/" . $mpd->current->file;
 my ($artist_path) = $path =~ m{^(.+)/.+/.+[.].+$};
 $artist_path = quotemeta($artist_path);
 
-run(
-  command => "urxvt -name sid -chdir $artist_path",
-  verbose => 0,
-);
+#run(
+#  command => "urxvt -name sid -chdir $artist_path",
+#  verbose => 0,
+#);
+
+system("urxvt -name sid -chdir $artist_path");
