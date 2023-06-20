@@ -83,9 +83,17 @@ definekey top s-0 vselect 0
 #---------------------------------------------------------------------------
 # mpd haxx
 #---------------------------------------------------------------------------
-bind n exec mpc --host 192.168.1.12 prev
-bind p exec mpc --host 192.168.1.12 next && mpd-cp-coverart-to-tmp
-bind o exec mpc --host 192.168.1.12 toggle
+#bind n exec mpc --host 192.168.1.12 prev
+#bind p exec mpc --host 192.168.1.12 next && mpd-cp-coverart-to-tmp
+#bind o exec mpc --host 192.168.1.12 toggle
+
+#---------------------------------------------------------------------------
+# plexamp haxx
+# https://github.com/trapd00r/hass-mpd-ikea
+#---------------------------------------------------------------------------
+
+bind p exec xdotool key ctrl+p
+bind o exec xdotool key ctrl+o
 
 # show coverart of the currently playing song
 # (win+Return)
