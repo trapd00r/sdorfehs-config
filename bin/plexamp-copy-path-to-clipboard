@@ -1,0 +1,13 @@
+#!/bin/sh
+# vim:ft=zsh:
+# abstract: copy now playing full path to clipboard
+
+PLEX_PATH=$(plexampnp -f)
+
+LOCAL_REL_PATH=$(echo $PLEX_PATH | sed 's/\/music\///g')
+
+LOCAL_ABS_PATH=${XDG_MUSIC_DIR}/${LOCAL_REL_PATH}
+
+echo $LOCAL_ABS_PATH
+
+echo $LOCAL_ABS_PATH | xclip
