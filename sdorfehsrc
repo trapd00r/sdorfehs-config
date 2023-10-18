@@ -164,32 +164,43 @@ bind W exec sdorfehs -c "hsplit" -c "resize 200 0"
 # init and startup
 #---------------------------------------------------------------------------
 
-vselect 2
-vrename db
-vselect 3
-vrename ftp
-vselect 4
-vrename www
-vselect 5
-vrename chat
-vselect 6
-vrename slask1
-vselect 7
-vrename slask2
-vselect 8
-vrename mail
-
-vselect 0
-vrename music
+vselect 1
+vrename code
 
 vselect 9
 vrename sound
 
 exec pavucontrol
+exec blueman-manager
 hsplit
 focusright
-exec pulseeffects
+focusleft
 iprev
+# click button on blueman startup
+exec xdotool key space
 
-vselect 1
-vrename code
+vselect 2
+vrename db
+
+vselect 3
+vrename ftp
+
+vselect 4
+vrename www
+
+vselect 5
+vrename chat
+
+vselect 6
+vrename slask1
+
+vselect 7
+vrename slask2
+
+vselect 8
+vrename mail
+
+vselect 0
+vrename music
+exec plexamp
+
