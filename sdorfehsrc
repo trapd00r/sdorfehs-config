@@ -106,6 +106,9 @@ definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
 bind p exec xdotool key ctrl+p
 bind o exec xdotool key ctrl+o
 
+
+bind exclam exec fzfbinselect
+
 # show coverart of the currently playing song
 # (win+Return)
 definekey top s-Return exec mpd-show-coverart

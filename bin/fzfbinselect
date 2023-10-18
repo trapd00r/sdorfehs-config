@@ -1,0 +1,7 @@
+#!/bin/sh
+# abstract: fzfbinselect
+
+# list all binaries in PATH, pick choice, execute in a new terminal
+font=-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-
+
+st -f $font -e zsh -c "$(ls $(echo ${PATH} | sed 's/:/ /g') 2> /dev/null | fzfmenu);zsh"
