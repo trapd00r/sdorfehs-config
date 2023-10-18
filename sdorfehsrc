@@ -19,8 +19,8 @@ set fgcolor           #af875f
 #set font              "Anonymous Pro:style=Regular:pixelsize=10:antialias=1:hinting=1:hintstyle=3"
 set font              "Terminus:pixelsize=32"
 set framefmt          frame %f (%Wx%H)
-set framemsgwait      3
-#set framemsgwait      -1
+#set framemsgwait      3
+set framemsgwait      -1
 set fwcolor           #242424
 set gap               0
 set historysize       20
