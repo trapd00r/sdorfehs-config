@@ -1,6 +1,9 @@
 # vim:ft=ratpoison:
 escape C-f
 
+# auto-move windows to the dedicated vscreen
+# addhook newwindow exec autovscreen
+
 #---------------------------------------------------------------------------
 # main options
 # https://www.japh.se/2021/03/21/ratpoison-urxvt-and-borders.html
@@ -168,7 +171,7 @@ vrename ftp
 vselect 4
 vrename www
 vselect 5
-vrename irc
+vrename chat
 vselect 6
 vrename slask1
 vselect 7
@@ -177,10 +180,10 @@ vselect 8
 vrename mail
 
 vselect 0
-vrename teams
+vrename music
 
 vselect 9
-vrename music
+vrename sound
 
 exec pavucontrol
 hsplit
