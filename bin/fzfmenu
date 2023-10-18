@@ -17,8 +17,9 @@ chmod 600 $input $output
 # you can also set window dimensions via -g '=COLSxROWS', see man st.
 #
 OPTS='--pointer=· --height 80% --layout=reverse --border --color=border:234,gutter:-1,query:197,hl+:197,hl:197,bg+:-1,fg:137'
+FONT='-xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1'
 
-st -f Terminus -c fzfmenu -n fzfmenu -e sh -c "cat $input | fzf $OPTS $(printf -- " '%s'" "$@" | sed "s/^ ''$//") | tee $output" & disown
+st -f $FONT -c fzfmenu -n fzfmenu -e sh -c "cat $input | fzf $OPTS $(printf -- " '%s'" "$@" | sed "s/^ ''$//") | tee $output" & disown
 
 # handle ctrl+c outside child terminal window
 trap "kill $! 2>/dev/null; rm -f $input $output" EXIT
