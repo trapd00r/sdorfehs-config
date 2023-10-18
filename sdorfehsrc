@@ -66,6 +66,9 @@ bind x exec xterm
 bind Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
 bind C-Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
 
+# max brightness x1 screen
+bind 0 exec brightnessctl s 19393
+
 #---------------------------------------------------------------------------
 # workspaces/vscreens - win+n
 #---------------------------------------------------------------------------
