@@ -76,6 +76,8 @@ bind 0 exec brightnessctl s 19393
 #---------------------------------------------------------------------------
 # workspaces/vscreens - win+n
 #---------------------------------------------------------------------------
+addhook switchvscreen vscreens
+
 definekey top s-1 vselect 1
 definekey top s-2 vselect 2
 definekey top s-3 vselect 3
@@ -88,8 +90,10 @@ definekey top s-9 vselect 9
 definekey top s-0 vselect 0
 
 # win+l, win+h
-definekey top s-l exec sdorfehs -c vnext; sdorfehs -c vscreens -i
-definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
+definekey top s-l vnext
+definekey top s-h vprev
+#definekey top s-l exec sdorfehs -c vnext; sdorfehs -c vscreens -i
+#definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
 
 #---------------------------------------------------------------------------
 # mpd haxx
@@ -106,20 +110,19 @@ definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
 bind p exec xdotool key ctrl+p
 bind o exec xdotool key ctrl+o
 
-
 bind exclam exec fzfbinselect
 
-# show coverart of the currently playing song
-# (win+Return)
-definekey top s-Return exec mpd-show-coverart
-
-# open a new terminal in the currently playing artist directory
-# (alt+Return)
-definekey top M-Return exec mpd-goto-artist-dir
-
-# open a new terminal in the currently playing album directory
-# (alt+backspace)
-definekey top M-BackSpace exec mpd-goto-album-dir
+# # show coverart of the currently playing song
+# # (win+Return)
+# definekey top s-Return exec mpd-show-coverart
+# 
+# # open a new terminal in the currently playing artist directory
+# # (alt+Return)
+# definekey top M-Return exec mpd-goto-artist-dir
+# 
+# # open a new terminal in the currently playing album directory
+# # (alt+backspace)
+# definekey top M-BackSpace exec mpd-goto-album-dir
 
 
 #---------------------------------------------------------------------------
