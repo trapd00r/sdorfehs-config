@@ -96,6 +96,13 @@ definekey top s-h vprev
 #definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
 
 #---------------------------------------------------------------------------
+# monitor brightness
+#---------------------------------------------------------------------------
+
+definekey top XF86MonBrightnessDown  exec brightnessctl s 10%-
+definekey top XF86MonBrightnessUp    exec brightnessctl s +10%
+
+#---------------------------------------------------------------------------
 # mpd haxx
 #---------------------------------------------------------------------------
 #bind n exec mpc --host 192.168.1.12 prev
