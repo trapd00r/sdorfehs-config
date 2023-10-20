@@ -103,8 +103,8 @@ definekey top XF86MonBrightnessDown  exec brightnessctl s 10%-
 definekey top XF86MonBrightnessUp    exec brightnessctl s +10%
 
 
-definekey top XF86AudioRaiseVolume exec pulsemixer --unmute --change-volume +5 --max-volume 100
-definekey top XF86AudioLowerVolume exec pulsemixer --change-volume -5
+definekey top XF86AudioRaiseVolume exec pulse_raise_volume
+definekey top XF86AudioLowerVolume exec pulse_lower_volume
 definekey top XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 definekey top XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
