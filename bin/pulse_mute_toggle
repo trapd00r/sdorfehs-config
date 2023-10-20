@@ -1,0 +1,6 @@
+#!/bin/sh
+
+pactl set-sink-mute @DEFAULT_SINK@ toggle
+sdorfehs -c "echo `pactl get-sink-mute @DEFAULT_SINK@ toggle | sed 's/Mute: yes/Muted/' | sed 's/Mute: no/Unmuted/'`"
+
+
