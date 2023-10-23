@@ -23,11 +23,11 @@ set framefmt          frame %f (%Wx%H)
 set framemsgwait      -1
 set fwcolor           #242424
 set gap               0
-set historysize       20
+set historysize       100
 set ignoreresizehints 1
 set maxsizegravity    c
 set maxundos          20
-set msgwait           3
+set msgwait           1
 set onlyborder        0
 set padding           0 0 0 0
 #set padding           1 1 1 0
