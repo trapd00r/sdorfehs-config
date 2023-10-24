@@ -1,7 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 # abstract: fzfbinselect
 
 # list all binaries in PATH, pick choice, execute in a new terminal
+# if it's a cli program, else execute directly
 font=-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-
 
-st -f $font -e zsh -c "$(ls $(echo ${PATH} | sed 's/:/ /g') 2> /dev/null | fzfmenu);zsh"
+# do not start a term for these but rather start them directly
+exceptions=('firefox' 'www' 'google-chrome' 'gcolor' 'dbeaver'
+            'pavucontrol' 'pcmanfm' 'plexamp' 'plex-htpc'
+            'blueman-manager')
+
+# pick a choice from the list of binaries in PATH
+run_this="$(ls $(echo ${PATH} | sed 's/:/ /g') 2> /dev/null | fzfmenu)"
+
+# if the choice is in the exceptions list, run it directly
+for i in "${exceptions[@]}"; do
+  if [[ ${run_this} =~ ${i}.* ]]; then
+    ${run_this} &
+    exit 0
+  fi
+done
+
+# else, run the command in a new term
+
+st -f $font -e zsh -c "$run_this;zsh"
