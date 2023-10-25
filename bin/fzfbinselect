@@ -13,6 +13,11 @@ exceptions=('firefox' 'www' 'google-chrome' 'gcolor' 'dbeaver'
 # pick a choice from the list of binaries in PATH
 run_this="$(ls $(echo ${PATH} | sed 's/:/ /g') 2> /dev/null | fzfmenu)"
 
+# exit cleanly if we change our mind and nothing is selected
+if [[ ${run_this} == "" ]]; then
+  exit 0
+fi
+
 # if the choice is in the exceptions list, run it directly
 for i in "${exceptions[@]}"; do
   if [[ ${run_this} =~ ${i}.* ]]; then
