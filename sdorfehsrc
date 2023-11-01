@@ -137,14 +137,27 @@ bind j focusdown
 bind k focusup
 bind l focusright
 
+# for a   [  ]  monitor
+# setup [][  ][]
+
 # left monitor
-bind H exec sselect_skip_top_monitor left
+#bind H exec sselect_skip_top_monitor left
+## right monitor
+#bind L exec sselect_skip_top_monitor right
+
+# for a   [  ]  monitor
+# setup [][  ]
+#         [TV]
+
+# left monitor
+bind H exec sselect_skip_top_and_behind_monitor left
 # right monitor
-bind L exec sselect_skip_top_monitor right
+bind L exec sselect_skip_top_and_behind_monitor right
+
 # middle monitor
-bind J sselect 1
+bind J sselect 2
 # top monitor
-bind K sselect 2
+bind K sselect 3
 
 bind C-K kill
 

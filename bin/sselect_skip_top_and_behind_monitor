@@ -1,0 +1,33 @@
+#!/usr/bin/perl
+# abstract: enable horizontal switching of monitors, but always skip the top and behind monitors
+# since we use another keybinding to go vertically up and down
+
+use strict;
+use warnings;
+use feature 'say';
+use IPC::Cmd qw(run);
+
+
+# left, right
+my $direction = shift;
+
+my @monitors = split(',', `sdorfehs -c sdump`);
+
+my ($current_monitor_number) = grep { /1$/ } @monitors;
+my($current_screen) = $current_monitor_number =~ /\S+\s+([0-3])/;
+
+
+# if $direction is left, change to the monitor to the left, skipping the top monitor
+# if $direction is right, change to the monitor to the right, skipping the top monitor
+# furthermore, allow going from leftmost monitor to the rightmost monitor and vice versa,
+# skipping the middle one
+
+my $new_screen = $direction eq 'left'
+  ? ($current_screen == 2 ? 1 : 1)
+  : ($current_screen == 1 ? 2 : 2);
+
+scalar run(
+  command => "sdorfehs -c 'sselect $new_screen'",
+  verbose => 0,
+  timeout => 0,
+);
