@@ -150,14 +150,17 @@ bind l focusright
 #         [TV]
 
 # left monitor
-bind H exec sselect_skip_top_and_behind_monitor left
-# right monitor
-bind L exec sselect_skip_top_and_behind_monitor right
+bind H sselect 0
 
 # middle monitor
+bind L sselect 2
 bind J sselect 2
+
 # top monitor
 bind K sselect 3
+
+# tv
+bind T sselect 1
 
 bind C-K kill
 
