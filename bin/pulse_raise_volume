@@ -1,0 +1,6 @@
+#!/bin/sh
+
+pulsemixer --unmute --change-volume +5 --max-volume 100
+sdorfehs -c "echo volume: `pulsemixer --get-volume | cut -f 2 -d ' '`"
+
+
