@@ -186,6 +186,13 @@ bind b exec st -e sh -c $(ls ~/dev/utils /usr/bin /bin |fzfmenu)
 # web development view, split firefox and a terminal
 bind W exec sdorfehs -c "hsplit" -c "resize 200 0"
 
+# map volume to knob
+definekey top XF86AudioRaiseVolume exec pulse_raise_volume
+definekey top XF86AudioLowerVolume exec pulse_lower_volume
+definekey top XF86AudioMute exec pulse_mute_toggle
+#definekey top XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+
 #---------------------------------------------------------------------------
 # init and startup
 #---------------------------------------------------------------------------
