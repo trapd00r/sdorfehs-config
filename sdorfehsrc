@@ -197,6 +197,17 @@ definekey top XF86AudioMute exec pulse_mute_toggle
 # init and startup
 #---------------------------------------------------------------------------
 
+# left monitor
+sselect 0
+exec www
+
+# top monitor
+sselect 3
+exec plexamp
+
+# middle monitor
+sselect 2
+
 vselect 2
 vrename db
 vselect 3
@@ -223,6 +234,10 @@ hsplit
 focusright
 exec pulseeffects
 iprev
+
+
+# middle monitor
+sselect 2
 
 vselect 1
 vrename code
