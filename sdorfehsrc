@@ -1,8 +1,8 @@
 # vim:ft=ratpoison:
 escape C-f
 
-# auto-move windows to the dedicated vscreen
-# addhook newwindow exec autovscreen
+# auto-move devtools to top monitor
+addhook newwindow exec automove_devtools_to_upper_screen
 
 #---------------------------------------------------------------------------
 # main options
@@ -32,7 +32,7 @@ set onlyborder        0
 set padding           0 0 0 0
 #set padding           1 1 1 0
 set resizefmt         resize (%Wx%H)
-set resizeunit        5
+set resizeunit        50
 #set rudeness          15
 set startupmessage    0
 set stickyfmt         %t
@@ -52,6 +52,7 @@ unbind k
 unbind n
 unbind v
 unbind w
+unbind C-w
 
 #---------------------------------------------------------------------------
 # applications
@@ -92,6 +93,12 @@ definekey top s-0 vselect 0
 # win+l, win+h
 definekey top s-l vnext
 definekey top s-h vprev
+
+definekey top s-Left  smove 0
+definekey top s-Right smove 2
+definekey top s-Up    smove 3
+definekey top s-Down  smove 2
+
 #definekey top s-l exec sdorfehs -c vnext; sdorfehs -c vscreens -i
 #definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
 
@@ -169,6 +176,7 @@ bind G vmove
 
 # move window to another monitor
 #definekey top M-Return smove
+
 
 # select vscreens and windows with fzf and st
 bind v exec fzfvselect
