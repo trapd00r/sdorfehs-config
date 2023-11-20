@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# a script to auto-move devtools to top monitor
+# used in `newwindow` hook
+
+win_name=$(xdotool getwindowfocus getwindowname)
+
+if [[ $win_name =~ "Developer Tools" ]]; then
+  sdorfehs -c 'smove 3'
+  sdorfehs -c 'sselect 3'
+fi

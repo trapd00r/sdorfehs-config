@@ -77,7 +77,7 @@ bind 0 exec brightnessctl s 19393
 #---------------------------------------------------------------------------
 # workspaces/vscreens - win+n
 #---------------------------------------------------------------------------
-addhook switchvscreen vscreens
+#addhook switchvscreen vscreens
 
 definekey top s-1 vselect 1
 definekey top s-2 vselect 2
@@ -91,8 +91,8 @@ definekey top s-9 vselect 9
 definekey top s-0 vselect 0
 
 # win+l, win+h
-definekey top s-l vnext
-definekey top s-h vprev
+definekey top s-l exec vnext
+definekey top s-h exec vprev
 
 definekey top s-Left  smove 0
 definekey top s-Right smove 2
