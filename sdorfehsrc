@@ -32,7 +32,7 @@ set onlyborder        0
 set padding           0 0 0 0
 #set padding           1 1 1 0
 set resizefmt         resize (%Wx%H)
-set resizeunit        5
+set resizeunit        50
 #set rudeness          15
 set startupmessage    0
 set stickyfmt         %t
@@ -52,6 +52,7 @@ unbind k
 unbind n
 unbind v
 unbind w
+unbind C-w
 
 #---------------------------------------------------------------------------
 # applications
@@ -74,7 +75,7 @@ bind C-Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
 #---------------------------------------------------------------------------
 # workspaces/vscreens - win+n
 #---------------------------------------------------------------------------
-addhook switchvscreen vscreens
+#addhook switchvscreen vscreens
 
 definekey top s-1 vselect 1
 definekey top s-2 vselect 2
@@ -88,10 +89,16 @@ definekey top s-9 vselect 9
 definekey top s-0 vselect 0
 
 # win+l, win+h
-definekey top s-l vnext
-definekey top s-h vprev
+definekey top s-l exec vnext
+definekey top s-h exec vprev
 #definekey top s-l exec sdorfehs -c vnext; sdorfehs -c vscreens -i
 #definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
+
+# move window to another screen
+definekey top s-Left  smove 0
+definekey top s-Right smove 2
+definekey top s-Up    smove 3
+definekey top s-Down  smove 2
 
 #---------------------------------------------------------------------------
 # monitor brightness

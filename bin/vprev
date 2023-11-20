@@ -1,0 +1,2 @@
+#!/bin/sh
+sdorfehs -c 'vprev' && sdorfehs -i -c 'vscreens'
