@@ -1,3 +1,4 @@
 #!/bin/sh
-sdorfehs -c 'vprev' && sdorfehs -i -c 'vscreens'
+sdorfehs -c 'vprev' && sdorfehs -c "echo $(sdorfehs -c vscreens |grep '\*')"
+
 

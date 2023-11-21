@@ -1,2 +1,2 @@
 #!/bin/sh
-sdorfehs -c 'vnext' && sdorfehs -i -c 'vscreens'
+sdorfehs -c 'vnext' && sdorfehs -c "echo $(sdorfehs -c vscreens |grep '\*')"
