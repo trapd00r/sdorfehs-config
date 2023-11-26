@@ -11,17 +11,18 @@ addhook newwindow exec automove_devtools_to_upper_screen
 set barbordercolor    #121212
 set barinpadding      1
 set barpadding        2 0
-set barsticky         0
+set barsticky         1
 set bgcolor           black
-set bwcolor           #161616
-set border            0
+set bwcolor           #242424
+set border            1
 set fgcolor           #af875f
-#set font              "Anonymous Pro:style=Regular:pixelsize=10:antialias=1:hinting=1:hintstyle=3"
-set font              "Terminus:pixelsize=32"
+set font              "Anonymous Pro:style=Regular:pixelsize=10:antialias=1:hinting=1:hintstyle=3"
+#set font              "Terminus:pixelsize=32"
 set framefmt          frame %f (%Wx%H)
 #set framemsgwait      3
 set framemsgwait      -1
-set fwcolor           #242424
+#set fwcolor           #242424
+set fwcolor           #484848
 set gap               0
 set historysize       20
 set ignoreresizehints 1
@@ -77,7 +78,7 @@ bind 0 exec brightnessctl s 19393
 #---------------------------------------------------------------------------
 # workspaces/vscreens - win+n
 #---------------------------------------------------------------------------
-#addhook switchvscreen vscreens
+addhook switchvscreen exec sdorfehs -c vscreens |grep '\*'|sed -E 's/.+[*](.+)$/\1/' > ~/etc/sdorfehs/bar
 
 definekey top s-1 vselect 1
 definekey top s-2 vselect 2
@@ -91,8 +92,12 @@ definekey top s-9 vselect 9
 definekey top s-0 vselect 0
 
 # win+l, win+h
-definekey top s-l exec vnext
-definekey top s-h exec vprev
+definekey top s-l vnext
+definekey top s-h vprev
+definekey top XF86MonBrightnessDown vnext
+definekey top XF86MonBrightnessUp vprev
+#definekey top s-l exec vnext
+#definekey top s-h exec vprev
 
 definekey top s-Left  smove 0
 definekey top s-Right smove 2
