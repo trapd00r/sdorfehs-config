@@ -1,2 +1,2 @@
 #!/bin/sh
-sdorfehs -c 'vprev' && sdorfehs -i -c 'vscreens'
+sdorfehs -c 'vprev' && sdorfehs -c vscreens | grep -P '[*]'|perl -pe  's/^\d+[*]//' > ~/etc/sdorfehs/bar
