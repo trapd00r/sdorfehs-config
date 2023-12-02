@@ -1,0 +1,236 @@
+# vim:ft=ratpoison:
+escape C-f
+
+# auto-move windows to the dedicated vscreen
+# addhook newwindow exec autovscreen
+
+#---------------------------------------------------------------------------
+# main options
+# https://www.japh.se/2021/03/21/ratpoison-urxvt-and-borders.html
+#---------------------------------------------------------------------------
+set barbordercolor    #121212
+set barinpadding      1
+set barpadding        2 0
+set barsticky         1
+set bgcolor           black
+set bwcolor           #242424
+set border            1
+set fgcolor           #af875f
+set font              "Anonymous Pro:style=Regular:pixelsize=10:antialias=1:hinting=1:hintstyle=3"
+#set font              "Terminus:pixelsize=32"
+set framefmt          frame %f (%Wx%H)
+#set framemsgwait      3
+set framemsgwait      -1
+set fwcolor           #484848
+set gap               0
+set historysize       100
+set ignoreresizehints 1
+set maxsizegravity    c
+set maxundos          20
+set msgwait           1
+set onlyborder        0
+set padding           0 0 0 0
+#set padding           1 1 1 0
+set resizefmt         resize (%Wx%H)
+set resizeunit        50
+#set rudeness          15
+set startupmessage    0
+set stickyfmt         %t
+set topkmap           top
+set transgravity      c
+set vscreens          10
+set warp              0
+set winfmt            %n%s%t
+set wingravity        nw
+set winliststyle      column
+set winname           title
+
+#---------------------------------------------------------------------------
+# unbind useless or dangerous defaults
+#---------------------------------------------------------------------------
+unbind k
+unbind n
+unbind v
+unbind w
+unbind C-w
+
+#---------------------------------------------------------------------------
+# applications
+#---------------------------------------------------------------------------
+bind a exec battery_date
+
+bind C exec urxvt -fg white -bg '#1e1727' -sbg +sb
+#bind c exec urxvt -fg white -bg black -sbg +sb
+
+# weird bug in rxvt where the PS1 shows at the bottom, solved by using -geometry flag
+bind c exec urxvt -geometry 400x400
+
+bind x exec xterm
+
+# scratch buffer for temp things
+bind Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
+bind C-Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
+
+
+#---------------------------------------------------------------------------
+# workspaces/vscreens - win+n
+#---------------------------------------------------------------------------
+#addhook switchvscreen vscreens
+
+definekey top s-1 vselect 1
+definekey top s-2 vselect 2
+definekey top s-3 vselect 3
+definekey top s-4 vselect 4
+definekey top s-5 vselect 5
+definekey top s-6 vselect 6
+definekey top s-7 vselect 7
+definekey top s-8 vselect 8
+definekey top s-9 vselect 9
+definekey top s-0 vselect 0
+
+# win+l, win+h
+definekey top s-l exec vnext
+definekey top s-h exec vprev
+#definekey top s-l exec sdorfehs -c vnext; sdorfehs -c vscreens -i
+#definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
+
+# move window to another screen
+definekey top s-Left  smove 0
+definekey top s-Right smove 2
+definekey top s-Up    smove 3
+definekey top s-Down  smove 2
+
+#---------------------------------------------------------------------------
+# monitor brightness
+#---------------------------------------------------------------------------
+
+definekey top XF86MonBrightnessDown  exec brightness_down
+definekey top XF86MonBrightnessUp    exec brightness_up
+
+
+definekey top XF86AudioRaiseVolume exec pulse_raise_volume
+definekey top XF86AudioLowerVolume exec pulse_lower_volume
+definekey top XF86AudioMute exec pulse_mute_toggle
+definekey top XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+#---------------------------------------------------------------------------
+# mpd haxx
+#---------------------------------------------------------------------------
+#bind n exec mpc --host 192.168.1.12 prev
+#bind p exec mpc --host 192.168.1.12 next && mpd-cp-coverart-to-tmp
+#bind o exec mpc --host 192.168.1.12 toggle
+
+#---------------------------------------------------------------------------
+# plexamp haxx
+# https://github.com/trapd00r/hass-mpd-ikea
+#---------------------------------------------------------------------------
+
+bind p exec xdotool key ctrl+p
+bind o exec xdotool key ctrl+o
+
+bind exclam exec fzfbinselect
+
+# # show coverart of the currently playing song
+# # (win+Return)
+# definekey top s-Return exec mpd-show-coverart
+# 
+# # open a new terminal in the currently playing artist directory
+# # (alt+Return)
+# definekey top M-Return exec mpd-goto-artist-dir
+# 
+# # open a new terminal in the currently playing album directory
+# # (alt+backspace)
+# definekey top M-BackSpace exec mpd-goto-album-dir
+
+
+#---------------------------------------------------------------------------
+# window management
+#---------------------------------------------------------------------------
+
+bind s split
+bind S hsplit
+
+bind h focusleft
+bind j focusdown
+bind k focusup
+bind l focusright
+
+# left monitor == 0
+bind H sselect 0
+#bind H exec sselect_skip_top_monitor left
+# laptop internal == 3
+#bind L exec sselect_skip_top_monitor right
+bind L sselect 3
+# middle monitor == 0
+bind J sselect 1
+# top monitor == 2
+bind K sselect 2
+
+bind C-K kill
+
+# move window to another named vscreen
+bind G vmove
+
+# move window to another monitor
+#definekey top M-Return smove
+
+# select vscreens and windows with fzf and st
+bind v exec fzfvselect
+bind w exec fzfselect
+
+# dbeaver doesn't behave and ignores the primary buffer
+bind Escape exec clipboard-to-primary
+
+# bind Tab exec sdorfehs -c "set barbordercolor black" -c "set bgcolor #d3ceb9" -c "set barborder 6" -c "set barpadding 24 14" -c "set border 6" -c "set fgcolor #444444" -c "set padding 40 40 40 40" -c "set onlyborder 1"
+bind ISO_Left_Tab restart
+
+# dmenu-like 'select and run', but using fzf (thank you for the inspiration wassberg)
+bind b exec st -e sh -c $(ls ~/dev/utils /usr/bin /bin |fzfmenu)
+
+# web development view, split firefox and a terminal
+bind W exec sdorfehs -c "hsplit" -c "resize 200 0"
+
+#---------------------------------------------------------------------------
+# init and startup
+#---------------------------------------------------------------------------
+
+vselect 1
+vrename code
+
+vselect 9
+vrename sound
+
+exec pavucontrol
+exec blueman-manager
+hsplit
+focusright
+focusleft
+iprev
+# click button on blueman startup
+exec xdotool key space
+
+vselect 2
+vrename db
+
+vselect 3
+vrename ftp
+
+vselect 4
+vrename www
+
+vselect 5
+vrename chat
+
+vselect 6
+vrename slask1
+
+vselect 7
+vrename slask2
+
+vselect 8
+vrename mail
+
+vselect 0
+vrename music
+exec plexamp
+

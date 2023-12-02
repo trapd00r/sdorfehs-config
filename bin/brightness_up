@@ -1,0 +1,6 @@
+#!/bin/sh
+
+brightnessctl set +10%
+sdorfehs -c "echo brightness: `brightnessctl g`"
+
+

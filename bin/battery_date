@@ -1,0 +1,8 @@
+#!/bin/sh
+
+bat="$(acpi -b | sed -E 's/^.+: //')"
+date=$(date "+%Y-%m-%d %H:%M")
+
+str="$bat    |    $date"
+
+sdorfehs -c "echo $str"
