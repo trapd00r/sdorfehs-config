@@ -78,7 +78,7 @@ bind 0 exec brightnessctl s 19393
 #---------------------------------------------------------------------------
 # workspaces/vscreens - win+n
 #---------------------------------------------------------------------------
-addhook switchvscreen exec sdorfehs -c vscreens |grep '\*'|sed -E 's/.+[*](.+)$/\1/' > ~/etc/sdorfehs/bar
+#addhook switchvscreen exec sdorfehs -c vscreens |grep '\*'|sed -E 's/.+[*](.+)$/\1/' > ~/etc/sdorfehs/bar
 
 definekey top s-1 vselect 1
 definekey top s-2 vselect 2
