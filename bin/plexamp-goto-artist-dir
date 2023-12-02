@@ -10,10 +10,10 @@ use feature 'say';
 my $plex_path = `plexampnp -f`;
 chomp $plex_path;
 
-my $local_rel_path = $plex_path =~ s{^/music/}{}r;
+my $local_rel_path = $plex_path =~ s{^/music2/}{}r;
 my $local_abs_path = $ENV{XDG_MUSIC_DIR} . '/' . $local_rel_path;
 
 my ($artist_path) = $local_abs_path =~ m{^(.+)/.+/.+[.].+$};
 $artist_path = quotemeta($artist_path);
 
-system("urxvt -name sid -chdir $artist_path");
+system("urxvt -geometry 400x400 -name sid -chdir $artist_path");

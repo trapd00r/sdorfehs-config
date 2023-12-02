@@ -11,7 +11,7 @@ use feature 'say';
 my $plex_path = `plexampnp -f`;
 chomp $plex_path;
 
-my $local_rel_path = $plex_path =~ s{^/music/}{}r;
+my $local_rel_path = $plex_path =~ s{^/music2/}{}r;
 my $local_abs_path = $ENV{XDG_MUSIC_DIR} . '/' . $local_rel_path;
 
 my ($album_path) = $local_abs_path =~ m{^(.+)/.+[.].+$};
@@ -22,4 +22,5 @@ $album_path = quotemeta($album_path);
 ##  verbose => 0,
 ##);
 #
-system("urxvt -chdir $album_path");
+printf "chdir to %s\n", $album_path;
+system("urxvt -geometry 400x400 -chdir $album_path");
