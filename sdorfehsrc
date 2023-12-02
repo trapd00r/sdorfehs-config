@@ -2,7 +2,7 @@
 escape C-f
 
 # auto-move devtools to top monitor
-addhook newwindow exec automove_devtools_to_upper_screen
+#addhook newwindow exec automove_devtools_to_upper_screen
 
 #---------------------------------------------------------------------------
 # main options

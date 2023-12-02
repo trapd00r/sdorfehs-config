@@ -16,7 +16,10 @@ chmod 600 $input $output
 # already.
 # you can also set window dimensions via -g '=COLSxROWS', see man st.
 #
-OPTS='--pointer=· --height 80% --layout=reverse --border --color=border:234,gutter:-1,query:197,hl+:197,hl:197,bg+:-1,fg:137'
+#OPTS='--pointer=· --height 80% --layout=reverse --border --color=border:234,gutter:-1,query:197,hl+:197,hl:197,bg+:-1,fg:137'
+OPTS='-i --pointer=">" --height 80% --layout=reverse --border --color=bg:232,bg+:232,info:143,border:240,spinner:108,hl:196,fg:-1,header:137,fg+:196,pointer:161,marker:168,prompt:110,hl+:196'
+
+
 FONT='-xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1'
 
 st -f $FONT -c fzfmenu -n fzfmenu -e sh -c "cat $input | fzf $OPTS $(printf -- " '%s'" "$@" | sed "s/^ ''$//") | tee $output" & disown
