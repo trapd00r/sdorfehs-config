@@ -1,6 +1,6 @@
 #!/usr/bin/perl
-# TODO: Limit to only music sessions
-#       Limit to only sessions with a certain user
+
+# https://github.com/polybar/polybar/wiki/Formatting
 
 use strict;
 use warnings;
