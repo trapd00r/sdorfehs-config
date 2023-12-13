@@ -30,7 +30,7 @@ set maxsizegravity    c
 set maxundos          20
 set msgwait           3
 set onlyborder        0
-set padding           0 0 0 0
+set padding           0 4 0 0
 #set padding           1 1 1 0
 set resizefmt         resize (%Wx%H)
 set resizeunit        50
@@ -39,7 +39,7 @@ set startupmessage    0
 set stickyfmt         %t
 set topkmap           top
 set transgravity      c
-set vscreens          10
+set vscreens          4
 set warp              0
 set winfmt            %n%s%t
 set wingravity        nw
@@ -210,6 +210,8 @@ definekey top XF86AudioMute exec pulse_mute_toggle
 # init and startup
 #---------------------------------------------------------------------------
 
+unmanage polybar-example_DP-3-1-5
+
 # left monitor
 sselect 0
 exec www
@@ -221,36 +223,17 @@ exec plexamp
 # middle monitor
 sselect 2
 
-vselect 2
-vrename db
-vselect 3
-vrename ftp
-vselect 4
-vrename www
-vselect 5
-vrename chat
-vselect 6
-vrename slask1
-vselect 7
-vrename slask2
-vselect 8
-vrename mail
-
 vselect 0
-vrename music
-
-vselect 9
-vrename sound
-
-exec pavucontrol
-hsplit
-focusright
-exec pulseeffects
-iprev
-
-
-# middle monitor
-sselect 2
+vrename db
 
 vselect 1
 vrename code
+
+vselect 2
+vrename db
+
+vselect 3
+vrename ftp
+
+vselect 4
+vrename www
