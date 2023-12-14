@@ -85,6 +85,11 @@ sub np {
 
   my $np = XMLin($xml_file, KeyAttr => { Media => 'id' }, ForceArray => [ 'Media' ]);
 
+  if($np->{size} == 0) {
+    print 'paused';
+    sleep 5;
+    exit;
+  }
 
   if(ref($np->{Track}) eq 'ARRAY') {
     # there are several sessions playing music
