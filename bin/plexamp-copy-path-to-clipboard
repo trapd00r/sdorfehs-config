@@ -4,7 +4,7 @@
 
 PLEX_PATH=$(plexampnp -f)
 
-LOCAL_REL_PATH=$(echo $PLEX_PATH | sed 's/\/music\///g')
+LOCAL_REL_PATH=$(echo $PLEX_PATH | sed 's/\/music2\///g')
 
 LOCAL_ABS_PATH=${XDG_MUSIC_DIR}/${LOCAL_REL_PATH}
 
