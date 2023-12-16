@@ -85,12 +85,22 @@ sub np {
 
   my $np = XMLin($xml_file, KeyAttr => { Media => 'id' }, ForceArray => [ 'Media' ]);
 
-  if($np->{size} == 0) {
-    print 'paused';
-    sleep 5;
+  # video playing
+  if($np->{Video}->{grandparentTitle}) {
+    my $tv_show = $np->{Video}->{grandparentTitle};
+    my $tv_episode = $np->{Video}->{title};
+    printf "%s - %s", $tv_show, $tv_episode;
     exit;
   }
 
+
+  # nothing playing
+  if($np->{size} == 0 or !$np->{Track}) {
+    print 'paused';
+    exit;
+  }
+
+  # music playing
   if(ref($np->{Track}) eq 'ARRAY') {
     # there are several sessions playing music
 
