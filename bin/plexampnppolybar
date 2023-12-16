@@ -85,11 +85,16 @@ sub np {
 
   my $np = XMLin($xml_file, KeyAttr => { Media => 'id' }, ForceArray => [ 'Media' ]);
 
+#  use Data::Dumper;
+#  print Dumper $np;
+
   # video playing
   if($np->{Video}->{grandparentTitle}) {
     my $tv_show = $np->{Video}->{grandparentTitle};
     my $tv_episode = $np->{Video}->{title};
-    printf "%s - %s", $tv_show, $tv_episode;
+    my $episode_no = $np->{Video}->{index};
+    my $season_no = $np->{Video}->{parentIndex};
+    printf "%s S%02dE%02d - %s", $tv_show, $season_no, $episode_no, $tv_episode;
     exit;
   }
 
