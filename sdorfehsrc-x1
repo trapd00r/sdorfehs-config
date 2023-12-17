@@ -202,18 +202,6 @@ vrename db
 vselect 1
 vrename code
 
-#vselect 9
-#vrename sound
-
-# exec pavucontrol
-# exec blueman-manager
-# hsplit
-# focusright
-# focusleft
-# iprev
-# # click button on blueman startup
-# exec xdotool key space
-
 vselect 2
 vrename db
 
@@ -222,20 +210,3 @@ vrename ftp
 
 vselect 4
 vrename www
-
-#vselect 5
-#vrename chat
-#
-#vselect 6
-#vrename slask1
-#
-#vselect 7
-#vrename slask2
-#
-#vselect 8
-#vrename mail
-#
-#vselect 0
-#vrename music
-#exec plexamp
-

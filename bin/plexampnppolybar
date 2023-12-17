@@ -94,7 +94,8 @@ sub np {
     my $tv_episode = $np->{Video}->{title};
     my $episode_no = $np->{Video}->{index};
     my $season_no = $np->{Video}->{parentIndex};
-    printf "%s S%02dE%02d - %s", $tv_show, $season_no, $episode_no, $tv_episode;
+    printf "%s S%02dE%02d %s",
+      fg($colors{artist}, $tv_show), $season_no, $episode_no, fg($colors{title}, $tv_episode);
     exit;
   }
 

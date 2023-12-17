@@ -9,19 +9,16 @@ escape C-f
 # https://www.japh.se/2021/03/21/ratpoison-urxvt-and-borders.html
 #---------------------------------------------------------------------------
 set barbordercolor    #121212
-set barinpadding      1
-set barpadding        2 0
+set barinpadding      0
+set barpadding        0 0
 set barsticky         1
-set bgcolor           black
+set bgcolor           #121212
 set bwcolor           #242424
 set border            1
 set fgcolor           #af875f
 set font              "Anonymous Pro:style=Regular:pixelsize=10:antialias=1:hinting=1:hintstyle=3"
-#set font              "Terminus:pixelsize=32"
 set framefmt          frame %f (%Wx%H)
-#set framemsgwait      3
 set framemsgwait      -1
-#set fwcolor           #242424
 set fwcolor           #484848
 set gap               0
 set historysize       20
@@ -54,6 +51,9 @@ unbind n
 unbind v
 unbind w
 unbind C-w
+unbind C-k
+unbind C-n
+unbind C-space
 
 #---------------------------------------------------------------------------
 # applications
@@ -96,38 +96,15 @@ definekey top s-l vnext
 definekey top s-h vprev
 definekey top XF86MonBrightnessDown vnext
 definekey top XF86MonBrightnessUp vprev
-#definekey top s-l exec vnext
-#definekey top s-h exec vprev
 
 definekey top s-Left  smove 0
 definekey top s-Right smove 2
 definekey top s-Up    smove 3
 definekey top s-Down  smove 2
 
-#definekey top s-l exec sdorfehs -c vnext; sdorfehs -c vscreens -i
-#definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
-
-#---------------------------------------------------------------------------
-# mpd haxx
-#---------------------------------------------------------------------------
-#bind n exec mpc --host 192.168.1.12 prev
-#bind p exec mpc --host 192.168.1.12 next && mpd-cp-coverart-to-tmp
-#bind o exec mpc --host 192.168.1.12 toggle
-
-#---------------------------------------------------------------------------
-# plexamp haxx
-# https://github.com/trapd00r/hass-mpd-ikea
-#---------------------------------------------------------------------------
-
-bind p exec xdotool key ctrl+p
-bind o exec xdotool key ctrl+o
 
 bind exclam exec fzfbinselect
 
-# # show coverart of the currently playing song
-# # (win+Return)
-# definekey top s-Return exec mpd-show-coverart
-# 
 # # open a new terminal in the currently playing artist directory
 # # (alt+Return)
 # definekey top M-Return exec mpd-goto-artist-dir
@@ -188,18 +165,12 @@ bind v exec fzfvselect
 bind w exec fzfselect
 
 # dbeaver doesn't behave and ignores the primary buffer
-bind Escape exec clipboard-to-primary
+#bind Escape exec clipboard-to-primary
 
 # bind Tab exec sdorfehs -c "set barbordercolor black" -c "set bgcolor #d3ceb9" -c "set barborder 6" -c "set barpadding 24 14" -c "set border 6" -c "set fgcolor #444444" -c "set padding 40 40 40 40" -c "set onlyborder 1"
 bind ISO_Left_Tab restart
 
-# dmenu-like 'select and run', but using fzf (thank you for the inspiration wassberg)
-bind b exec st -e sh -c $(ls ~/dev/utils /usr/bin /bin |fzfmenu)
-
-# web development view, split firefox and a terminal
-bind W exec sdorfehs -c "hsplit" -c "resize 200 0"
-
-# map volume to knob
+# map volume to knob, except the volume things is mapped to next/prev in plexamp
 definekey top XF86AudioRaiseVolume exec pulse_raise_volume
 definekey top XF86AudioLowerVolume exec pulse_lower_volume
 definekey top XF86AudioMute exec pulse_mute_toggle
@@ -211,6 +182,8 @@ definekey top XF86AudioMute exec pulse_mute_toggle
 #---------------------------------------------------------------------------
 
 unmanage polybar-example_DP-3-1-5
+unmanage polybar-example_DP-2
+unmanage polybar-middle_DP-2
 
 # left monitor
 sselect 0
@@ -230,10 +203,10 @@ vselect 1
 vrename code
 
 vselect 2
-vrename db
+vrename www
 
 vselect 3
-vrename ftp
+vrename chat
 
-vselect 4
-vrename www
+#vselect 4
+#vrename www
