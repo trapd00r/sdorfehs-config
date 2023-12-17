@@ -121,8 +121,14 @@ sub np {
   else {
   }
 
+#  use Data::Dumper;
+#  print Dumper($np);
   my $now_playing;
-  $now_playing->{artist} = $np->{Track}->{grandparentTitle};
+
+  # find the performing artist(s) if albumartist is Various Artists
+  $now_playing->{artist} = $np->{Track}->{grandparentTitle} eq 'Various Artists'
+    ? $np->{Track}->{originalTitle}
+    : $np->{Track}->{grandparentTitle};
   $now_playing->{album}  = $np->{Track}->{parentTitle};
   $now_playing->{title}  = $np->{Track}->{title};
   $now_playing->{year}   = $np->{Track}->{parentYear};
