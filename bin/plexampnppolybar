@@ -89,7 +89,8 @@ sub np {
 #  print Dumper $np;
 
   # video playing
-  if($np->{Video}->{grandparentTitle}) {
+  # only prefer video if there is no music playing
+  if($np->{Video}->{grandparentTitle} and ! $np->{Track}) {
     my $tv_show = $np->{Video}->{grandparentTitle};
     my $tv_episode = $np->{Video}->{title};
     my $episode_no = $np->{Video}->{index};
