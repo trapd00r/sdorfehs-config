@@ -90,10 +90,10 @@ definekey top s-9 vselect 9
 definekey top s-0 vselect 0
 
 # win+l, win+h
-definekey top s-l vnext
-definekey top s-h vprev
-#definekey top s-l exec sdorfehs -c vnext; sdorfehs -c vscreens -i
-#definekey top s-h exec sdorfehs -c vprev; sdorfehs -c vscreens -i
+#definekey top s-l vnext
+#definekey top s-h vprev
+definekey top s-l exec vnextbugfix
+definekey top s-h exec vprevbugfix
 
 # move window to another screen
 definekey top s-Left  smove 0
@@ -204,10 +204,10 @@ vselect 1
 vrename code
 
 vselect 2
-vrename db
+vrename chat
 
 vselect 3
 vrename ftp
 
-vselect 4
-vrename www
+#vselect 4
+#vrename www

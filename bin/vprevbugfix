@@ -1,0 +1,12 @@
+#!/bin/sh
+CURRENT_VSCREEN=$(sdorfehs -c vscreens | grep '\*' | perl -pe 's/(\d+).+$/$1/')
+
+# skip vscreen 1 since it's buggy
+# gtk context menus doesn't work in dbeaver or firefox
+# WHY???
+if [ "$CURRENT_VSCREEN" -eq 1 ]; then
+    sdorfehs -c 'vselect 3'
+    exit 0
+else
+    sdorfehs -c "vselect $(($CURRENT_VSCREEN - 1))"
+fi
