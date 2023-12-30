@@ -27,7 +27,7 @@ set maxsizegravity    c
 set maxundos          20
 set msgwait           3
 set onlyborder        0
-set padding           0 4 0 0
+set padding           0 2 0 0
 #set padding           1 1 1 0
 set resizefmt         resize (%Wx%H)
 set resizeunit        50
