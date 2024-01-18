@@ -54,6 +54,7 @@ unbind n
 unbind v
 unbind w
 unbind C-w
+unbind C-l
 
 #---------------------------------------------------------------------------
 # applications
