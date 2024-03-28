@@ -54,6 +54,10 @@ unbind n
 unbind v
 unbind w
 unbind C-w
+unbind C-k
+unbind C-n
+unbind C-l
+unbind C-space
 
 #---------------------------------------------------------------------------
 # applications
