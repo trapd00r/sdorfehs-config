@@ -73,8 +73,11 @@ bind c exec urxvt -geometry 400x400
 bind x exec xterm
 
 # scratch buffer for temp things
-bind Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
-bind C-Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
+#bind Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
+#bind C-Return exec urxvt -fg white -bg black -sbg +sb -e vim -c 'call Scratch()'
+
+bind Return exec kitty -e nvim -c 'call Scratch()'
+bind C-Return exec kitty -e nvim -c 'call Scratch()'
 
 
 #---------------------------------------------------------------------------
