@@ -10,6 +10,7 @@ exceptions=(
   'firefox' 'www' 'google-chrome' 'gcolor' 'dbeaver'
   'pavucontrol' 'pcmanfm' 'plexamp' 'plex-htpc'
   'blueman-manager' 'nicotine' 'plex' 'meet' 'slack' 'steam'
+  'insomnium'
 )
 
 # pick a choice from the list of binaries in PATH
