@@ -166,6 +166,11 @@ bind G vmove
 # move window to another monitor
 #definekey top M-Return smove
 
+# move windows around
+definekey top M-l exchangeright
+definekey top M-h exchangeleft
+definekey top M-k exchangeup
+definekey top M-j exchangeup
 
 # select vscreens and windows with fzf and st
 bind v exec fzfvselect

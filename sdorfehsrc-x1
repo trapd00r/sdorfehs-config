@@ -68,7 +68,8 @@ bind C exec urxvt -fg white -bg '#1e1727' -sbg +sb
 #bind c exec urxvt -fg white -bg black -sbg +sb
 
 # weird bug in rxvt where the PS1 shows at the bottom, solved by using -geometry flag
-bind c exec urxvt -geometry 400x400
+#bind c exec urxvt -geometry 400x400
+bind c exec kitty
 
 bind x exec xterm
 
@@ -181,6 +182,12 @@ bind G vmove
 
 # move window to another monitor
 #definekey top M-Return smove
+
+# move windows around
+definekey top M-l exchangeright
+definekey top M-h exchangeleft
+definekey top M-k exchangeup
+definekey top M-j exchangeup
 
 # select vscreens and windows with fzf and st
 bind v exec fzfvselect
