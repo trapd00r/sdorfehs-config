@@ -10,11 +10,11 @@ exceptions=(
   'firefox' 'www' 'google-chrome' 'gcolor' 'dbeaver'
   'pavucontrol' 'pcmanfm' 'plexamp' 'plex-htpc'
   'blueman-manager' 'nicotine' 'plex' 'meet' 'slack' 'steam'
-  'insomnium'
+  'insomnium' 'bruno'
 )
 
 # pick a choice from the list of binaries in PATH
-run_this="$(ls $(echo ${PATH} | sed 's/:/ /g') 2> /dev/null | fzfmenu)"
+run_this="$(find $(echo ${PATH} -type f | sed 's/:/ /g' ) 2> /dev/null | fzfmenu)"
 
 # exit cleanly if we change our mind and nothing is selected
 if [[ ${run_this} == "" ]]; then
