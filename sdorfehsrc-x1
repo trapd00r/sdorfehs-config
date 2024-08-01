@@ -64,12 +64,12 @@ unbind C-space
 #---------------------------------------------------------------------------
 bind a exec battery_date
 
-bind C exec kitty -o font_family="Anonymous Pro" -o font_size=8 -o bold_font="Anonymous Pro Bold" -o italic_font="Anonymous Pro Italic" -o bold_italic_font="Anonymous Pro Bold Italic"
+bind c exec kitty -o font_family="Anonymous Pro" -o font_size=8 -o bold_font="Anonymous Pro Bold" -o italic_font="Anonymous Pro Italic" -o bold_italic_font="Anonymous Pro Bold Italic"
 #bind c exec urxvt -fg white -bg black -sbg +sb
 
 # weird bug in rxvt where the PS1 shows at the bottom, solved by using -geometry flag
 #bind c exec urxvt -geometry 400x400
-bind c exec kitty
+bind C exec kitty
 
 bind x exec xterm
 
@@ -108,6 +108,9 @@ definekey top s-Left  smove 0
 definekey top s-Right smove 2
 definekey top s-Up    smove 3
 definekey top s-Down  smove 2
+
+definekey top s-s exec flameshot gui
+
 
 #---------------------------------------------------------------------------
 # monitor brightness
